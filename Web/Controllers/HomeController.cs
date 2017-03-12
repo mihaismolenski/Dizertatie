@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Proiect4.Controllers
+namespace Web.Controllers
 {
     public class HomeController : Controller
     {
