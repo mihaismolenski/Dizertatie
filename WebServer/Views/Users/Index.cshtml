@@ -1,0 +1,19 @@
+﻿@model WebServer.ViewModels.UsersListViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="btn-group">
+    <button type="button" class="btn btn-primary ">Add User</button>
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a href="#">Add normal user</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Add superuser</a></li>
+    </ul>
+</div>
