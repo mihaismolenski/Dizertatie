@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace ABE.Models.CPABE
+﻿namespace ABE.Models.CPABE
 {
     public class CiphertextPolicyUser
     {
-        public IList<Attribute> Attributes;
+        public CiphertextPolicySecretKey Key;
     }
 }

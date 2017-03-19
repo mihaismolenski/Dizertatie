@@ -45,6 +45,7 @@
     <Compile Include="Models\AttributeBasedEncryption.cs" />
     <Compile Include="Models\CPABE\CiphertextPolicyAttributeBasedEncryption.cs" />
     <Compile Include="Models\CPABE\CiphertextPolicyEncryptedFile.cs" />
+    <Compile Include="Models\CPABE\CiphertextPolicySecretKey.cs" />
     <Compile Include="Models\CPABE\CiphertextPolicyUser.cs" />
     <Compile Include="Models\Gates\AndGate.cs" />
     <Compile Include="Models\Gates\Gate.cs" />
@@ -52,9 +53,16 @@
     <Compile Include="Models\Gates\NotGate.cs" />
     <Compile Include="Models\Gates\OrGate.cs" />
     <Compile Include="Models\Gates\SubsetGate.cs" />
+    <Compile Include="Models\Interfaces\IEncryptedFile.cs" />
+    <Compile Include="Models\Interfaces\ISecretKey.cs" />
     <Compile Include="Models\KPABE\KeyPolicyEncryptedFile.cs" />
     <Compile Include="Models\KPABE\KeyPolicyAttributeBasedEncryption.cs" />
+    <Compile Include="Models\KPABE\KeyPolicySecretKey.cs" />
     <Compile Include="Models\KPABE\KeyPolicyUser.cs" />
+    <Compile Include="Models\MasterKey.cs" />
+    <Compile Include="Models\PublicParameters.cs" />
+    <Compile Include="Models\SecurityParameter.cs" />
+    <Compile Include="Models\SetupResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

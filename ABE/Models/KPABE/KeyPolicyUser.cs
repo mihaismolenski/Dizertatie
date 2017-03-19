@@ -2,6 +2,6 @@
 {
     public class KeyPolicyUser
     {
-        public AccessTree AccessTree;
+        public KeyPolicySecretKey Key;
     }
 }

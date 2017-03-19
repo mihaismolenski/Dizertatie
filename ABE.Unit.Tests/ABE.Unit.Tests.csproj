@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GivenACiphertextPolicyAbe.cs" />
+    <Compile Include="GivenAKeyPolicyAbe.cs" />
     <Compile Include="GivenAnAccessTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,6 +56,10 @@
     <ProjectReference Include="..\ABE\ABE.csproj">
       <Project>{f4425348-e043-4b88-89c6-96e945a0ae30}</Project>
       <Name>ABE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTOs\DTOs.csproj">
+      <Project>{d32559ac-c71d-4833-bbf9-b54e4e2daf15}</Project>
+      <Name>DTOs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
