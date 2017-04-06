@@ -40,10 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserAttributes\BaseUserAttribute.cs" />
+    <Compile Include="Attributes\AttributeTypeDto.cs" />
+    <Compile Include="Attributes\UserAttributeDto.cs" />
     <Compile Include="Files\FileDto.cs" />
-    <Compile Include="UserAttributes\BirthdayAttribute.cs" />
-    <Compile Include="UserAttributes\CountryAttribute.cs" />
     <Compile Include="Users\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

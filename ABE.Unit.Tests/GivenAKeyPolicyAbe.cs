@@ -10,25 +10,25 @@ namespace ABE.Unit.Tests
     public class GivenAKeyPolicyAbe
     {
         protected KeyPolicyAttributeBasedEncryption Kpabe;
-        protected SetupResult SetupResult;
+        protected PublicParameters PublicParameters;
 
         [OneTimeSetUp]
         public void Setup()
         {
             Kpabe = new KeyPolicyAttributeBasedEncryption();
-            SetupResult = Kpabe.Setup();
+            PublicParameters = Kpabe.Setup();
         }
 
         [Test]
         public void Should_return_setup_result()
         {
-            Assert.IsNotNull(SetupResult);
+            Assert.IsNotNull(PublicParameters);
         }
 
         [Test]
         public void Should_generate_key()
         {
-            var key = Kpabe.Keygen(SetupResult.MasterKey, new AccessTree());
+            var key = Kpabe.Keygen(new AccessTree());
             Assert.IsNotNull(key);
             Assert.IsTrue(key is KeyPolicySecretKey);
         }
@@ -36,7 +36,7 @@ namespace ABE.Unit.Tests
         [Test]
         public void Should_encrypt_file()
         {
-            var file = Kpabe.Encrypt(SetupResult.PublicParameters, new FileDto(), new List<Attribute>());
+            var file = Kpabe.Encrypt(PublicParameters, new File(), new List<Attribute>());
             Assert.IsNotNull(file);
             Assert.IsTrue(file is KeyPolicyEncryptedFile);
         }
@@ -44,7 +44,7 @@ namespace ABE.Unit.Tests
         [Test]
         public void Should_decrypt_file()
         {
-            var file = Kpabe.Decrypt(SetupResult.PublicParameters, new KeyPolicyEncryptedFile(), new KeyPolicySecretKey());
+            var file = Kpabe.Decrypt(PublicParameters, new KeyPolicyEncryptedFile(), new KeyPolicySecretKey());
             Assert.IsNotNull(file);
         }
     }

@@ -1,6 +1,8 @@
 ﻿namespace ABE.Models
 {
-    public class AttributeBasedEncryption
+    public abstract class AttributeBasedEncryption
     {
+        protected SecurityParameter SecurityParameter;
+        protected MasterKey MasterKey;
     }
 }

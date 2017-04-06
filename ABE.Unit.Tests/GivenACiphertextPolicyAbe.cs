@@ -11,25 +11,25 @@ namespace ABE.Unit.Tests
     public class GivenACiphertextPolicyAbe
     {
         protected CiphertextPolicyAttributeBasedEncryption Cpabe;
-        protected SetupResult SetupResult;
+        protected PublicParameters PublicParameters;
 
         [OneTimeSetUp]
         public void Setup()
         {
             Cpabe = new CiphertextPolicyAttributeBasedEncryption();
-            SetupResult = Cpabe.Setup();
+            PublicParameters = Cpabe.Setup();
         }
 
         [Test]
         public void Should_return_setup_result()
         {
-            Assert.IsNotNull(SetupResult);
+            Assert.IsNotNull(PublicParameters);
         }
 
         [Test]
         public void Should_generate_key()
         {
-            var key = Cpabe.Keygen(SetupResult.MasterKey, new List<Attribute>());
+            var key = Cpabe.Keygen(new List<Attribute>());
             Assert.IsNotNull(key);
             Assert.IsTrue(key is CiphertextPolicySecretKey);
         }
@@ -37,7 +37,7 @@ namespace ABE.Unit.Tests
         [Test]
         public void Should_encrypt_file()
         {
-            var file = Cpabe.Encrypt(SetupResult.PublicParameters, new FileDto(), new AccessTree());
+            var file = Cpabe.Encrypt(PublicParameters, new File(), new AccessTree());
             Assert.IsNotNull(file);
             Assert.IsTrue(file is CiphertextPolicyEncryptedFile);
         }
@@ -45,7 +45,7 @@ namespace ABE.Unit.Tests
         [Test]
         public void Should_decrypt_file()
         {
-            var file = Cpabe.Decrypt(SetupResult.PublicParameters, new CiphertextPolicyEncryptedFile(), new CiphertextPolicySecretKey());
+            var file = Cpabe.Decrypt(PublicParameters, new CiphertextPolicyEncryptedFile(), new CiphertextPolicySecretKey());
             Assert.IsNotNull(file);
         }
     }

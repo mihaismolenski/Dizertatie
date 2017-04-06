@@ -1,11 +1,10 @@
-﻿using ABE.Models.Interfaces;
-using DTOs.Files;
+﻿using ABE.Models.BaseModels;
 
 namespace ABE.Models.CPABE
 {
-    public class CiphertextPolicyEncryptedFile : IEncryptedFile
+    public class CiphertextPolicyEncryptedFile : BaseEncryptedFile
     {
-        public FileDto File;
+        public File File;
         public AccessTree AccessTree;
     }
 }

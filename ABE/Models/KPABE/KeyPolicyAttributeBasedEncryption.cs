@@ -1,35 +1,28 @@
 ﻿using System.Collections.Generic;
-using ABE.Models.CPABE;
-using ABE.Models.Interfaces;
-using DTOs.Files;
 
 namespace ABE.Models.KPABE
 {
     public class KeyPolicyAttributeBasedEncryption : AttributeBasedEncryption
     {
-        public IList<KeyPolicyEncryptedFile> EncryptedFiles;
-
-        private SecurityParameter _securityParameter;
-        private MasterKey _masterKey;
-
-        public SetupResult Setup()
+        public PublicParameters Setup()
         {
-            return new SetupResult();
+            MasterKey = new MasterKey();
+            return new PublicParameters();
         }
 
-        public IEncryptedFile Encrypt(PublicParameters publicParameters, FileDto file, IList<Attribute> attributes)
+        public KeyPolicyEncryptedFile Encrypt(PublicParameters publicParameters, File file, IList<Attribute> attributes)
         {
             return new KeyPolicyEncryptedFile();
         }
 
-        public ISecretKey Keygen(MasterKey masterKey, AccessTree accessTree)
+        public KeyPolicySecretKey Keygen(AccessTree accessTree)
         {
             return new KeyPolicySecretKey();
         }
 
-        public FileDto Decrypt(PublicParameters publicParameters, KeyPolicyEncryptedFile encryptedFile, KeyPolicySecretKey secretKey)
+        public File Decrypt(PublicParameters publicParameters, KeyPolicyEncryptedFile encryptedFile, KeyPolicySecretKey secretKey)
         {
-            return new FileDto();
+            return new File();
         }
     }
 }

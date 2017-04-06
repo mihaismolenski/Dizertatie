@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DTOs.UserAttributes;
+using DTOs.Attributes;
 using DTOs.Users;
 using NUnit.Framework;
 
@@ -19,16 +19,16 @@ namespace DTOs.Unit.Tests
                 FirstName = "Mihai",
                 LastName = "Smolenschi",
                 UserId = 1,
-                UserAttributes = new List<IUserAttribute>
+                UserAttributes = new List<UserAttributeDto>
                 {
-                    new BirthdayAttribute
+                    new UserAttributeDto
                     {
-                        Name = "BirthDay",
-                        Value = new DateTime(1992,7,2)
+                        Id = 1,
+                        Value = "1992,7,2"
                     },
-                    new CountryAttribute
+                    new UserAttributeDto
                     {
-                        Name = "Country",
+                        Id = 1,
                         Value = "Romania"
                     }
                 }
@@ -56,8 +56,8 @@ namespace DTOs.Unit.Tests
         [Test]
         public void Should_set_user_attributes()
         {
-            Assert.AreEqual(new DateTime(1992, 7, 2), Dto.UserAttributes[0].GetValue);
-            Assert.AreEqual("Romania", Dto.UserAttributes[1].GetValue);
+            Assert.AreEqual("1992,7,2", Dto.UserAttributes[0].Value);
+            Assert.AreEqual("Romania", Dto.UserAttributes[1].Value);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DTOs.UserAttributes;
+using DTOs.Attributes;
 
 namespace DTOs.Users
 {
@@ -8,6 +8,6 @@ namespace DTOs.Users
         public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public IList<IUserAttribute> UserAttributes;
+        public IList<UserAttributeDto> UserAttributes;
     }
 }

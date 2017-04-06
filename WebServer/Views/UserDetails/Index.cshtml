@@ -1,0 +1,48 @@
+﻿@using System.Web.Mvc.Html
+@using CloudWrappers.LookUps
+@using GridMvc.Html
+@using GridMvc.Sorting
+@model WebServer.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-12">
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+            <div class="input-group">
+                @Html.TextBoxFor(m => m.FirstName)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, new { @class = "control-label" })
+            <div class="input-group">
+                @Html.TextBoxFor(m => m.LastName)
+            </div>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("AddUserAttribute", "UserDetails", FormMethod.Post, new { model = Model }))
+{
+    @Html.HiddenFor(model => model.UserId)
+    <div class="col-sm-4">
+        @Html.DropDownListFor(model => model.NewAttributeType, new SelectList(LookUps.AttributeTypes, "AttributeTypeId", "Name"), new { @class="zeon-dropdown"})
+    </div>
+    <div class="col-sm-4">
+        @Html.TextBoxFor(model => model.NewAttributeValue, new { @class = "zeon-textbox" })
+        @Html.ValidationMessageFor(model => model.NewAttributeValue, "", new { @class = "text-danger" })
+    </div>
+        <div class="col-sm-4">
+            <button type="submit" class="zeon-button">Add attribute</button>
+        </div>
+        }
+
+        @Html.Grid(Model.UserAttributes).Columns(columns =>
+{
+    columns.Add(foo => foo.Name).Titled("Attribute Name").SetWidth(240).Filterable(true).Sortable(true).SortInitialDirection(GridSortDirection.Descending);
+    columns.Add(foo => foo.Value).Titled("Value").SetWidth(240).Filterable(true).Sortable(true).SortInitialDirection(GridSortDirection.Descending);
+    columns.Add().Titled("").SetWidth(30).Sanitized(false).Encoded(false).RenderValueAs(model => @Html.ActionLink(" ", "DeleteAttribute", new { userId = Model.UserId, attributeId = model.Id }, new { @class = " glyphicon glyphicon-trash", title = "Delete" }).ToHtmlString());
+}).WithPaging(20).Sortable().WithMultipleFilters()

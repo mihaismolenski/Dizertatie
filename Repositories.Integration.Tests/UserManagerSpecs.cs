@@ -33,5 +33,13 @@ namespace Repositories.Integration.Tests
         {
             Assert.AreEqual("Smolenschi", User.LastName);
         }
+
+        [Test]
+        public void Should_load_user_attributes()
+        {
+            var attributes = User.UserAttributes;
+            Assert.AreEqual("Student", attributes[0].Value);
+            Assert.AreEqual("Securitatea Informatiei", attributes[1].Value);
+        }
     }
 }

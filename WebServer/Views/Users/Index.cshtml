@@ -1,4 +1,6 @@
-﻿@model WebServer.ViewModels.UsersListViewModel
+﻿@using GridMvc.Html
+@using GridMvc.Sorting
+@model WebServer.ViewModels.UsersListViewModel
 
 @{
     ViewBag.Title = "title";
@@ -17,3 +19,10 @@
         <li><a href="#">Add superuser</a></li>
     </ul>
 </div>
+
+@Html.Grid(Model.Users).Columns(columns =>
+{
+    columns.Add(foo => foo.FirstName).Titled("First Name").SetWidth(240).Filterable(true).Sortable(true).SortInitialDirection(GridSortDirection.Descending);
+    columns.Add(foo => foo.LastName).Titled("Last Name").SetWidth(240).Filterable(true).Sortable(true).SortInitialDirection(GridSortDirection.Descending);
+    columns.Add().Titled("").SetWidth(30).Sanitized(false).Encoded(false).RenderValueAs(model => @Html.ActionLink(" ", "Index", "UserDetails", new { userId = model.UserId }, new { @class = " glyphicon glyphicon-eye-open", title = "Details" }).ToHtmlString());
+}).WithPaging(20).Sortable().WithMultipleFilters()

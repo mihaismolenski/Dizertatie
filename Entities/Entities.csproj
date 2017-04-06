@@ -52,7 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\AttributeType.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserAttribute.cs" />
+    <Compile Include="FluentMappings\AttributeTypeMap.cs" />
+    <Compile Include="FluentMappings\UserAttributeMap.cs" />
     <Compile Include="FluentMappings\UserMap.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

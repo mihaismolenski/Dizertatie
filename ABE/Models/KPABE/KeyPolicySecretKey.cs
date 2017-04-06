@@ -1,8 +1,8 @@
-﻿using ABE.Models.Interfaces;
+﻿using ABE.Models.BaseModels;
 
 namespace ABE.Models.KPABE
 {
-    public class KeyPolicySecretKey : ISecretKey
+    public class KeyPolicySecretKey : BaseSecretKey
     {
         public AccessTree AccessTree;
     }

@@ -11,6 +11,7 @@ namespace Entities.FluentMappings
             Id(x => x.UserId);
             Map(x => x.FirstName);
             Map(x => x.LastName);
+            HasMany(x => x.Attributes).KeyColumn("UserId").Cascade.All();
         }
     }
 }
