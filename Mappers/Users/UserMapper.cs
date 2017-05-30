@@ -21,5 +21,12 @@ namespace Mappers.Users
 
             return userDto;
         }
+
+        public static User MapTo(UserDto userDto)
+        {
+            var user = Mapper.Map<UserDto, User>(userDto);
+
+            return user;
+        }
     }
 }

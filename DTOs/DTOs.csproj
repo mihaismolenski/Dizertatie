@@ -41,8 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\AttributeTypeDto.cs" />
+    <Compile Include="Attributes\FileAttributeDto.cs" />
     <Compile Include="Attributes\UserAttributeDto.cs" />
+    <Compile Include="FileAccessTrees\FileAccessTreeDto.cs" />
     <Compile Include="Files\FileDto.cs" />
+    <Compile Include="Gates\GateDto.cs" />
+    <Compile Include="Gates\Gates.cs" />
     <Compile Include="Users\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

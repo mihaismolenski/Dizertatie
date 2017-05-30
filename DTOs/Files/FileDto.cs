@@ -4,7 +4,7 @@ namespace DTOs.Files
 {
     public class FileDto
     {
-        public int Id { get; set; }
+        public int FileId { get; set; }
         public string Name { get; set; }
         public DateTime CreatedDate { get; set; }
     }

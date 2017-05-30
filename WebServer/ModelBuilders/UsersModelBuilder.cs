@@ -27,5 +27,10 @@ namespace WebServer.ModelBuilders
 
             return model;
         }
+
+        public void DeleteUser(int userId)
+        {
+            CpAbeCloud.DeleteUser(userId);
+        }
     }
 }

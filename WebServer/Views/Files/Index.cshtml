@@ -1,8 +1,20 @@
-﻿@model WebServer.ViewModels.FileListViewModel
+﻿@using GridMvc.Html
+@using GridMvc.Sorting
+@model WebServer.ViewModels.FileListViewModel
 
 @{
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>title</h2>
+<div class="col-sm-4">
+    @Html.ActionLink("Add File", "Add", "FileDetails", null, new { @class = "zeon-link" })
+</div>
+
+@Html.Grid(Model.Files).Columns(columns =>
+{
+    columns.Add(foo => foo.Name).Titled("File Name").SetWidth(240).Filterable(true).Sortable(true).SortInitialDirection(GridSortDirection.Descending);
+    columns.Add(foo => foo.CreatedDate).Titled("Date Added").SetWidth(240).Filterable(true).Sortable(true).SortInitialDirection(GridSortDirection.Descending);
+    columns.Add().Titled("").SetWidth(30).Sanitized(false).Encoded(false).RenderValueAs(model => @Html.ActionLink(" ", "Index", "FileDetails", new { fileId = model.FileId }, new { @class = " glyphicon glyphicon-eye-open", title = "Details" }).ToHtmlString());
+    columns.Add().Titled("").SetWidth(30).Sanitized(false).Encoded(false).RenderValueAs(model => @Html.ActionLink(" ", "Delete", "Files", new { fileId = model.FileId }, new { @class = " glyphicon glyphicon-trash", title = "Delete" }).ToHtmlString());
+}).WithPaging(20).Sortable().WithMultipleFilters()

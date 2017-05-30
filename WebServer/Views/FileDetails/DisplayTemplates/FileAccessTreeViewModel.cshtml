@@ -1,0 +1,17 @@
+﻿@model WebServer.ViewModels.FileAccessTreeViewModel
+@{
+    Layout = null;
+}
+
+@{
+    if (Model.Gate.GateId != 0)
+    {
+        @Html.DisplayFor(m => m.Gate)
+    }
+    else if (Model.FileAttribute != null)
+    {
+        @Html.DisplayFor(m => m.FileAttribute)
+    }
+    <br />
+    @Html.DisplayFor(m => m.Children)
+}

@@ -9,22 +9,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-sm-12">
-    <div class="form-horizontal">
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
-            <div class="input-group">
-                @Html.TextBoxFor(m => m.FirstName)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastName, new { @class = "control-label" })
-            <div class="input-group">
-                @Html.TextBoxFor(m => m.LastName)
-            </div>
+@using (Html.BeginForm("Save", "UserDetails", FormMethod.Post, new { model = Model }))
+{
+    @Html.HiddenFor(m => m.UserId)
+    <div class="col-sm-4">
+        <div>
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "zeon-textbox", @placeholder = "First Name" })
         </div>
     </div>
-</div>
+    <div class="col-sm-4">
+        <div>
+            @Html.TextBoxFor(m => m.LastName, new { @class = "zeon-textbox", @placeholder = "Last Name" })
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <button type="submit" class="zeon-button">Update Details</button>
+    </div>
+}
+<br />
+<br />
+<hr>
 @using (Html.BeginForm("AddUserAttribute", "UserDetails", FormMethod.Post, new { model = Model }))
 {
     @Html.HiddenFor(model => model.UserId)
@@ -35,12 +39,12 @@
         @Html.TextBoxFor(model => model.NewAttributeValue, new { @class = "zeon-textbox" })
         @Html.ValidationMessageFor(model => model.NewAttributeValue, "", new { @class = "text-danger" })
     </div>
-        <div class="col-sm-4">
-            <button type="submit" class="zeon-button">Add attribute</button>
-        </div>
-        }
+    <div class="col-sm-4">
+        <button type="submit" class="zeon-button">Add attribute</button>
+    </div>
+}
 
-        @Html.Grid(Model.UserAttributes).Columns(columns =>
+@Html.Grid(Model.UserAttributes).Columns(columns =>
 {
     columns.Add(foo => foo.Name).Titled("Attribute Name").SetWidth(240).Filterable(true).Sortable(true).SortInitialDirection(GridSortDirection.Descending);
     columns.Add(foo => foo.Value).Titled("Value").SetWidth(240).Filterable(true).Sortable(true).SortInitialDirection(GridSortDirection.Descending);

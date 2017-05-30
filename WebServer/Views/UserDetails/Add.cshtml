@@ -1,0 +1,28 @@
+﻿@using System.Web.Mvc.Html
+@model WebServer.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "UserDetails", FormMethod.Post, new {model = Model}))
+{
+    <div class="col-sm-12">
+        <div class="form-horizontal">
+            <div class="col-sm-4">
+                <div>
+                    @Html.TextBoxFor(m => m.FirstName, new {@class = "zeon-textbox", @placeholder="First Name"})
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div>
+                    @Html.TextBoxFor(m => m.LastName, new {@class = "zeon-textbox", @placeholder = "Last Name" })
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <button type="submit" class="zeon-button">Add User</button>
+            </div>
+        </div>
+    </div>
+}

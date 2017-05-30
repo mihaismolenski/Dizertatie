@@ -1,4 +1,5 @@
 ﻿using CloudWrappers.CpAbeCloud;
+using DTOs.Users;
 using WebServer.ViewModels;
 
 namespace WebServer.ModelBuilders
@@ -25,6 +26,24 @@ namespace WebServer.ModelBuilders
         public void AddUserAttribute(int userId, int attributeTypeId, string value)
         {
             CpAbeCloud.AddUserAttribute(userId, attributeTypeId, value);
+        }
+
+        public UserViewModel SaveUser(UserViewModel model)
+        {
+            var dto = new UserDto
+            {
+                UserId = model.UserId,
+                FirstName = model.FirstName,
+                LastName = model.LastName
+            };
+            var result = CpAbeCloud.SaveUser(dto);
+            return new UserViewModel
+            {
+                UserId = result.UserId,
+                FirstName = result.FirstName,
+                LastName = result.LastName,
+                UserAttributes = result.UserAttributes
+            };
         }
     }
 }

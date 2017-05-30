@@ -15,7 +15,7 @@ namespace DTOs.Unit.Tests
             Dto = new FileDto
             {
                 Name = "File1.txt",
-                Id = 2,
+                FileId = 2,
                 CreatedDate = new DateTime(2017,3,3)
             };
         }
@@ -29,7 +29,7 @@ namespace DTOs.Unit.Tests
         [Test]
         public void Should_set_file_id()
         {
-            Assert.AreEqual(2, Dto.Id);
+            Assert.AreEqual(2, Dto.FileId);
         }
 
         [Test]

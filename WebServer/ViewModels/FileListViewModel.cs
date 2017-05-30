@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using DTOs.Files;
 
 namespace WebServer.ViewModels
 {
     public class FileListViewModel
     {
-        public IList<FileDto> Files;
+        public IList<FileViewModel> Files { get; set; }
     }
 }

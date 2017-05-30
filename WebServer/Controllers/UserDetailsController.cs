@@ -21,6 +21,18 @@ namespace WebServer.Controllers
             return View(model);
         }
 
+        public ActionResult Add()
+        {
+            var model = new UserViewModel();
+            return View(model);
+        }
+
+        public ActionResult Save(UserViewModel model)
+        {
+            var result = _userDetailsModelBuilder.SaveUser(model);
+            return RedirectToAction("Index", new { userId = result.UserId });
+        }
+
         [HttpGet]
         public ActionResult DeleteAttribute(int userId, int attributeId)
         {

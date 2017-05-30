@@ -27,3 +27,35 @@
     color: white;
     background-color: #3276b1;
 }
+
+.zeon-link {
+    margin: 4px;
+    padding: 8px;
+    background-color: #3276b1;
+    border-radius: 3px;
+    color: white;
+    min-width: 150px;
+}
+
+.zeon-link:hover {
+    text-decoration: none;
+    color: gainsboro;
+}
+
+.treeGate {
+    border: 2px solid #fb0a0a;
+    border-radius: 14px;
+}
+
+.treeGate > p {
+    margin: 3px 8px 3px 8px;
+}
+
+.treeAttribute {
+    border: 2px solid #1f11f3;
+    border-radius: 10px;
+}
+
+.treeAttribute > p {
+    margin: 3px;
+}

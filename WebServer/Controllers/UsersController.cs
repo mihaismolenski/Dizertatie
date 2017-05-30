@@ -17,5 +17,11 @@ namespace WebServer.Controllers
             var model = _usersModelBuilder.GetViewModel();
             return View(model);
         }
+
+        public ActionResult Delete(int userId)
+        {
+            _usersModelBuilder.DeleteUser(userId);
+            return RedirectToAction("Index");
+        }
     }
 }

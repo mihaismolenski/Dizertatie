@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseSpecs.cs" />
+    <Compile Include="FileManagerSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserManagerSpecs.cs" />
   </ItemGroup>

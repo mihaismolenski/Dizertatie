@@ -18,6 +18,19 @@ namespace Repositories.Managers
             return UserMapper.MapTo(user);
         }
 
+        public UserDto Save(UserDto dto)
+        {
+            using (ITransaction tx = Session.BeginTransaction())
+            {
+                var user = dto.UserId != 0 ? Session.Load<User>(dto.UserId) : new User();
+                user.FirstName = dto.FirstName;
+                user.LastName = dto.LastName;
+                Session.SaveOrUpdate(user);
+                tx.Commit();
+                return GetUserById(user.UserId);
+            }
+        }
+
         public IList<UserDto> GetAllUsers()
         {
             var query = Session.QueryOver<User>()
@@ -47,6 +60,17 @@ namespace Repositories.Managers
                 var attribute = Session.Load<UserAttribute>(attributeId);
 
                 Session.Delete(attribute);
+                tx.Commit();
+            }
+        }
+
+        public void Delete(int userId)
+        {
+            using (ITransaction tx = Session.BeginTransaction())
+            {
+                var user = Session.Load<User>(userId);
+
+                Session.Delete(user);
                 tx.Commit();
             }
         }

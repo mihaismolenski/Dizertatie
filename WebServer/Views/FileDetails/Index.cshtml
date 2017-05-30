@@ -1,0 +1,40 @@
+﻿@model WebServer.ViewModels.FileViewModel
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="/Scripts/Treant.js"></script>
+<script src="/Scripts/raphael.js"></script>
+<link rel='stylesheet' href='~/Content/Treant.css' type='text/css'>
+<script src="/Content/Scripts/accessTree.js"></script>
+
+@using (Html.BeginForm("Save", "FileDetails", FormMethod.Post, new { model = Model }))
+{
+    @Html.HiddenFor(m => m.FileId)
+    <div class="col-sm-4">
+        <div>
+            @Html.TextBoxFor(m => m.Name, new { @class = "zeon-textbox", @placeholder = "File Name" })
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div>
+            @Html.TextBoxFor(m => m.CreatedDate, new { @class = "zeon-textbox", @placeholder = "Date Added" })
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <button type="submit" class="zeon-button">@{if (Model.FileId == 0) {<span>Save file</span>} else { <span>Update Details</span>}}</button>
+    </div>
+}
+
+@*@Html.DisplayFor(m => m)*@
+
+<div id="accessTree" style="width:100%; height: 100%;"> </div>
+
+<script>
+    var options = {
+        fileId: '@Model.FileId',
+        containerId: "#accessTree"
+    };
+    zeon.accessTree.init(options);
+</script>

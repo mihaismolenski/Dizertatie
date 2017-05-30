@@ -7,17 +7,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="btn-group">
-    <button type="button" class="btn btn-primary ">Add User</button>
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="caret"></span>
-        <span class="sr-only">Toggle Dropdown</span>
-    </button>
-    <ul class="dropdown-menu">
-        <li><a href="#">Add normal user</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Add superuser</a></li>
-    </ul>
+<div class="col-sm-4">
+    @Html.ActionLink("Add User", "Add", "UserDetails", null,new { @class = "zeon-link" })
 </div>
 
 @Html.Grid(Model.Users).Columns(columns =>
@@ -25,4 +16,5 @@
     columns.Add(foo => foo.FirstName).Titled("First Name").SetWidth(240).Filterable(true).Sortable(true).SortInitialDirection(GridSortDirection.Descending);
     columns.Add(foo => foo.LastName).Titled("Last Name").SetWidth(240).Filterable(true).Sortable(true).SortInitialDirection(GridSortDirection.Descending);
     columns.Add().Titled("").SetWidth(30).Sanitized(false).Encoded(false).RenderValueAs(model => @Html.ActionLink(" ", "Index", "UserDetails", new { userId = model.UserId }, new { @class = " glyphicon glyphicon-eye-open", title = "Details" }).ToHtmlString());
+    columns.Add().Titled("").SetWidth(30).Sanitized(false).Encoded(false).RenderValueAs(model => @Html.ActionLink(" ", "Delete", "Users", new { userId = model.UserId }, new { @class = " glyphicon glyphicon-trash", title = "Delete" }).ToHtmlString());
 }).WithPaging(20).Sortable().WithMultipleFilters()
