@@ -46,8 +46,33 @@ namespace WebServer.ModelBuilders
             return viewModel;
         }
 
+        public FileAccessTreeViewModel AddGate(int fileId, int parentId, int gateId)
+        {
+            var dto = CpAbeCloud.AddGate(fileId, parentId, gateId);
+            var viewModel = MapAccessTreeToViewModel(dto);
+            return viewModel;
+        }
+
+        public FileAccessTreeViewModel AddAttribute(int fileId, int parentId, int attributeTypeId, string value)
+        {
+            var dto = CpAbeCloud.AddAttribute(fileId, parentId, attributeTypeId, value);
+            var viewModel = MapAccessTreeToViewModel(dto);
+            return viewModel;
+        }
+
+        public FileAccessTreeViewModel AddRoot(int fileId, int gateId)
+        {
+            var dto = CpAbeCloud.AddRoot(fileId, gateId);
+            var viewModel = MapAccessTreeToViewModel(dto);
+            return viewModel;
+        }
+
         private FileAccessTreeViewModel MapAccessTreeToViewModel(FileAccessTreeDto dto)
         {
+            if (dto == null)
+            {
+                return null;
+            }
             var viewModel = new FileAccessTreeViewModel
             {
                 AccessTreeId = dto.AccessTreeId,

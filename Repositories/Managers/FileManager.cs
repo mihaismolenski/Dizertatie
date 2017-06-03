@@ -54,5 +54,54 @@ namespace Repositories.Managers
                 .SingleOrDefault();
             return FileAccessTreeMapper.MapToDto(accessTree);
         }
+
+        public void AddGate(int parentId, int gateId)
+        {
+            using (var tx = Session.BeginTransaction())
+            {
+                var fileAccessTree = new FileAccessTree
+                {
+                    Gate = Session.Load<Gate>(gateId),
+                    Parent = Session.Load<FileAccessTree>(parentId)
+                };
+                Session.SaveOrUpdate(fileAccessTree);
+                tx.Commit();
+            }
+        }
+
+        public void AddAttribute(int parentId, int attributeTypeId, string value)
+        {
+            using (var tx = Session.BeginTransaction())
+            {
+                var attribute = new FileAttribute
+                {
+                    AttributeType = Session.Load<AttributeType>(attributeTypeId),
+                    Value = value
+                };
+                Session.SaveOrUpdate(attribute);
+                var fileAccessTree = new FileAccessTree
+                {
+                    FileAttribute = attribute,
+                    Parent = Session.Load<FileAccessTree>(parentId)
+                };
+                Session.SaveOrUpdate(fileAccessTree);
+                tx.Commit();
+            }
+        }
+
+        public void AddRoot(int fileId, int gateId)
+        {
+            using (var tx = Session.BeginTransaction())
+            {
+
+                var fileAccessTree = new FileAccessTree
+                {
+                    File = Session.Load<File>(fileId),
+                    Gate = Session.Load<Gate>(gateId)
+                };
+                Session.SaveOrUpdate(fileAccessTree);
+                tx.Commit();
+            }
+        }
     }
 }

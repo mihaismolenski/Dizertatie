@@ -1,4 +1,5 @@
-﻿@model WebServer.ViewModels.FileViewModel
+﻿@using CloudWrappers.LookUps
+@model WebServer.ViewModels.FileViewModel
 @{
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,33 +9,93 @@
 <script src="/Scripts/raphael.js"></script>
 <link rel='stylesheet' href='~/Content/Treant.css' type='text/css'>
 <script src="/Content/Scripts/accessTree.js"></script>
+<script src="/Content/Scripts/accessPolicy.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 @using (Html.BeginForm("Save", "FileDetails", FormMethod.Post, new { model = Model }))
 {
     @Html.HiddenFor(m => m.FileId)
-    <div class="col-sm-4">
+    @Html.HiddenFor(m => m.AccessPolicy)
+    <div class="row">
+    <div class="col-md-4">
         <div>
             @Html.TextBoxFor(m => m.Name, new { @class = "zeon-textbox", @placeholder = "File Name" })
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4">
         <div>
             @Html.TextBoxFor(m => m.CreatedDate, new { @class = "zeon-textbox", @placeholder = "Date Added" })
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4">
         <button type="submit" class="zeon-button">@{if (Model.FileId == 0) {<span>Save file</span>} else { <span>Update Details</span>}}</button>
+    </div>
     </div>
 }
 
-@*@Html.DisplayFor(m => m)*@
+<div class="row" id="addRootSection" style="display: none;">
+    <div class="col-md-2">
+        @Html.DropDownList("asa", new List<SelectListItem>(new SelectList(LookUps.Gates, "GateId", "Name")), new {@class = "zeon-dropdown", id = "txtRoot"})
+    </div>
+    <div class="col-md-2">
+        <button class="zeon-button" id="addRootBtn">Add Root</button>
+    </div>
+</div>
 
+<div id="accessTreeDialog" style="display: none;">
+    <div>
+        <div class="col-md-12">
+            @Html.DropDownList("asa", new List<SelectListItem>(new SelectList(LookUps.Gates, "GateId", "Name")), new { @class = "zeon-dropdown", id = "txtGate" })
+        </div>
+        <div class="col-md-12">
+            <button class="zeon-button" id="addGateBtn">Add Gate</button>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div class="col-md-12">
+            @Html.DropDownList("asa", new List<SelectListItem>(new SelectList(LookUps.AttributeTypes, "AttributeTypeId", "Name")), new { @class = "zeon-dropdown", id = "txtAttributeType" })
+        </div>
+        <div class="col-md-12">
+            <input class="zeon-textbox" placeholder="Attribute Value" id="txtAttributeValue"/>
+        </div>
+        <div class="col-md-12">
+            <button class="zeon-button" id="addAttributeBtn">Add Attribute</button>
+        </div>
+    </div>
+</div>
 <div id="accessTree" style="width:100%; height: 100%;"> </div>
 
+@*<div id="attributeValueDialog" title="Basic dialog" style="display:none;">
+    <input class="zeon-textbox"/>
+    <button class="zeon-button">Ok</button>
+</div>*@
 <script>
-    var options = {
+    $(function () {
+        //$("#accessTreeDialog").dialog();
+    });
+
+    var accessTreeOptions = {
+        dialogId: '#accessTreeDialog',
+        addRootBtnId: '#addRootBtn',
+        addGateBtnId: '#addGateBtn',
+        addAttributeBtnId: '#addAttributeBtn',
+        txtRootId: '#txtRoot',
+        txtGateId: '#txtGate',
+        txtAttributeTypeId: '#txtAttributeType',
+        txtAttributeValueId: '#txtAttributeValue',
         fileId: '@Model.FileId',
         containerId: "#accessTree"
     };
-    zeon.accessTree.init(options);
+    @*var accessPolicyOptions = {
+        gatesContainer: '#gatesContainer',
+        attributesContainer: '#attributesContainer',
+        inputId: '@Html.IdFor(m=>m.AccessPolicy)',
+        containerId: "#accessPolicyContainer"
+    };*@
+
+    zeon.accessTree.init(accessTreeOptions);
+    //zeon.accessPolicy.init(accessPolicyOptions);
 </script>

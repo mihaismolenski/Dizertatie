@@ -14,6 +14,7 @@ namespace Entities.FluentMappings
             References(x => x.Gate, "GateId");
             References(x => x.FileAttribute, "FileAttributeId");
             HasMany(x => x.Children).KeyColumn("ParentId").Inverse().Cascade.AllDeleteOrphan();
+            References(x => x.Parent, "ParentId");
         }
     }
 }

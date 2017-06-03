@@ -14,10 +14,7 @@ namespace Mappers.Files
         {
             if (fileAccessTree == null)
             {
-                return new FileAccessTreeDto
-                {
-                    Children = new List<FileAccessTreeDto>()
-                };
+                return null;
             }
             var fileAccessTreeDto = new FileAccessTreeDto
             {

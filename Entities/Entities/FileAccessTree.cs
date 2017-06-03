@@ -9,5 +9,6 @@ namespace Entities.Entities
         public virtual FileAttribute FileAttribute { get; set; }
         public virtual File File { get; set; }
         public virtual IList<FileAccessTree> Children { get; set; }
+        public virtual FileAccessTree Parent { get; set; }
     }
 }

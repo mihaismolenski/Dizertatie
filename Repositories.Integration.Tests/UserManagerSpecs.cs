@@ -38,8 +38,11 @@ namespace Repositories.Integration.Tests
         public void Should_load_user_attributes()
         {
             var attributes = User.UserAttributes;
-            Assert.AreEqual("Student", attributes[0].Value);
-            Assert.AreEqual("Securitatea Informatiei", attributes[1].Value);
+            Assert.Multiple(() => {
+                Assert.AreEqual("Romania", attributes[0].Value);
+                Assert.AreEqual("Male", attributes[1].Value);
+            });
+
         }
     }
 }

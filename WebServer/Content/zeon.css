@@ -42,6 +42,14 @@
     color: gainsboro;
 }
 
+.zeon-toolSection {
+    margin: 4px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid brown;
+    border-radius: 3px;
+}
+
 .treeGate {
     border: 2px solid #fb0a0a;
     border-radius: 14px;
@@ -58,4 +66,38 @@
 
 .treeAttribute > p {
     margin: 3px;
+}
+
+.gate-control {
+    display: inline-block;
+    background: orange;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 1px;
+}
+.gate-control:hover {
+    cursor: pointer;
+}
+
+.attribute-control {
+    display: inline-block;
+    background: lightgreen;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 1px;
+}
+
+.attribute-control:hover {
+    cursor: pointer;
+}
+
+.attribute-value-control {
+    background: lightgray;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 1px;
+}
+
+.node:hover {
+    cursor: pointer;
 }

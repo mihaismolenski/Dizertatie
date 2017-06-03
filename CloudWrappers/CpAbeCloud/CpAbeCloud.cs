@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using DTOs.FileAccessTrees;
 using DTOs.Files;
+using DTOs.Gates;
 using DTOs.Users;
 using Repositories.Managers;
 
@@ -72,6 +73,33 @@ namespace CloudWrappers.CpAbeCloud
         {
             var manager = new FileManager();
             return manager.GetAccessTree(fileId);
+        }
+
+        public static IList<GateDto> GetAllGates()
+        {
+            var manager = new GateManager();
+            return manager.GetAllGates();
+        }
+
+        public static FileAccessTreeDto AddGate(int fileId, int parentId, int gateId)
+        {
+            var manager = new FileManager();
+            manager.AddGate(parentId, gateId);
+            return GetAccessTree(fileId);
+        }
+
+        public static FileAccessTreeDto AddAttribute(int fileId, int parentId, int attributeTypeId, string value)
+        {
+            var manager = new FileManager();
+            manager.AddAttribute(parentId, attributeTypeId, value);
+            return GetAccessTree(fileId);
+        }
+
+        public static FileAccessTreeDto AddRoot(int fileId, int gateId)
+        {
+            var manager = new FileManager();
+            manager.AddRoot(fileId, gateId);
+            return GetAccessTree(fileId);
         }
     }
 }
